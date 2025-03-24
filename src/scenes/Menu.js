@@ -15,10 +15,8 @@ export default class MenuScene extends Phaser.Scene {
     preload() {}
 
     create() {
-        //init input
         this.cursors = this.input.keyboard.createCursorKeys();
 
-        // Text
         const menuMessage =
             this.viewMenuCount > 0
                 ? `Game Paused\nScore:${this.score}\n\nPress Space to resume`

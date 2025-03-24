@@ -9,10 +9,8 @@ export default class Options extends Phaser.Scene {
     create() {
         const { width, height } = this.scale;
 
-        // imagem de fundo do menu de opções
         this.add.image(width / 2, height / 2, 'optionsBackground').setOrigin(0.5).setDisplaySize(width, height);
 
-        // botões
         const muteButtonZone = this.add.zone(width / 2, height / 2 - 10, 300, 90).setOrigin(0.5).setInteractive();
         const unmuteButtonZone = this.add.zone(width / 2, height / 2 + 140, 300, 90).setOrigin(0.5).setInteractive();
         const menuButtonZone = this.add.zone(width / 2, height / 2 + 290, 300, 90).setOrigin(0.5).setInteractive();
@@ -31,7 +29,6 @@ export default class Options extends Phaser.Scene {
             this.scene.start(constants.scenes.mainMenu);
         });
 
-        // Adicionar cursor para os botões
         this.addCursor(muteButtonZone);
         this.addCursor(unmuteButtonZone);
         this.addCursor(menuButtonZone);

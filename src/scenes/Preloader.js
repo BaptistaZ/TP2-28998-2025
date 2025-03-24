@@ -70,7 +70,7 @@ export default class Preloader extends Phaser.Scene {
                 start: 0,
                 end: 7,
             }),
-            frameRate: 7, // Aumenta a taxa de quadros para uma rotação mais suave
+            frameRate: 7, 
             repeat: -1,
         });
 
@@ -102,7 +102,7 @@ export default class Preloader extends Phaser.Scene {
         });
 
         // start main menu scene
-        this.scene.start(constants.scenes.mainMenu); // Inicia a cena do menu principal
+        this.scene.start(constants.scenes.mainMenu); 
     }
 
     loadFont(name, url) {

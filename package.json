@@ -4,12 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-  "dev": "vite"
-},
+    "dev": "vite"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "phaser": "^3.88.2"
+    "phaser": "^3.88.2",
+    "phaser3-nineslice": "^0.5.0"
   }
 }

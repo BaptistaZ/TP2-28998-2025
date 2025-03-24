@@ -55,11 +55,11 @@ export default class CountdownController {
       if (!this.timerEvent || this.duration <= 0) {
           return;
       }
-      // compute the current time
+
       const elapsed = this.timerEvent.getElapsed();
       const remaining = this.duration - elapsed;
       const seconds = remaining / 1000;
-      // update the label
+
       this.label.text = seconds.toFixed(2);
   }
 }

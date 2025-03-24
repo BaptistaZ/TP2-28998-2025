@@ -15,18 +15,18 @@ export default class Game extends Phaser.Scene {
     iceText;
     freezeTimeText;
     freezeActive = false;
-    freezeCooldown = 3000; // Cooldown de 3 segundos
-    freezeDuration = 3000; // Duração do congelamento
+    freezeCooldown = 3000; 
+    freezeDuration = 3000; 
 
     constructor() {
         super({ key: constants.scenes.game });
-        this.rubis = 0; // Inicializa a contagem de rubis
+        this.rubis = 0; 
         this.gameOver = false;
     }
 
     init(data) {
         this.rubis = 0;
-        this.iceCount = 0; // Resetar o contador de gelos
+        this.iceCount = 0; 
         this.gameOver = false;
         this.gameStart = true;
         this.cursors = this.input.keyboard.createCursorKeys();
@@ -50,15 +50,14 @@ export default class Game extends Phaser.Scene {
 
         this.physics.add.collider(this.player, this.platforms);
         this.physics.add.collider(this.diamantes, this.platforms);
-        this.physics.add.collider(this.enemies, this.platforms); // Adicione a colisão com plataformas
-        this.physics.add.collider(this.enemies, this.enemies); // Evita sobreposição dos inimigos
+        this.physics.add.collider(this.enemies, this.platforms); 
+        this.physics.add.collider(this.enemies, this.enemies); 
         this.physics.add.collider(this.player, this.enemies, this.handlePlayerEnemyCollide, null, this);
 
         this.physics.add.overlap(this.player, this.diamantes, this.collectDiamante, null, this);
 
         this.scene.launch(constants.scenes.ui);
 
-        // Adicionar tecla ESC para pausar o jogo
         this.input.keyboard.on('keydown-ESC', () => {
             this.scene.pause();
             this.scene.launch(constants.scenes.pauseMenu);
@@ -98,14 +97,13 @@ export default class Game extends Phaser.Scene {
     createEnemy() {
         let x = Phaser.Math.Between(0, 800);
         let y = Phaser.Math.Between(0, 300);
-        const enemy = this.enemies.create(x, y, 'enemy'); // Spawna uma toupeira
+        const enemy = this.enemies.create(x, y, 'enemy'); 
         enemy.setBounce(0.2);
         enemy.setCollideWorldBounds(true);
-        enemy.setVelocity(Phaser.Math.Between(-50, 50), 20); // Velocidade 
-        enemy.allowGravity = true; // gravidade para as touperias
+        enemy.setVelocity(Phaser.Math.Between(-50, 50), 20);  
+        enemy.allowGravity = true; 
         enemy.anims.play('enemyTurn', true);
 
-        // Movimento aleatório inicial
         enemy.direction = Phaser.Math.Between(0, 1) ? 'left' : 'right';
         enemy.setVelocityX(enemy.direction === 'left' ? -50 : 50);
 
@@ -128,7 +126,7 @@ export default class Game extends Phaser.Scene {
             child.setBounceY(0);
             child.setCollideWorldBounds(true);
             child.body.allowGravity = false;
-            child.anims.play('rotate'); // Adiciona a animação de rotação
+            child.anims.play('rotate'); 
         });
     }
 
@@ -184,7 +182,6 @@ export default class Game extends Phaser.Scene {
         this.updatePlayerPosition();
         this.countdown.update();
 
-        // Atualizar a posição dos inimigos
         this.enemies.children.iterate((enemy) => {
             if (!this.freezeActive) {
                 const direction = this.player.x < enemy.x ? -1 : 1;
@@ -237,11 +234,11 @@ export default class Game extends Phaser.Scene {
         diamante.disableBody(true, true);
         this.collectSound.play();
         this.updateRubis();
-        this.countdown.start(this.handleCountdownFinished.bind(this), 15000); // Reinicia para 15 segundos
+        this.countdown.start(this.handleCountdownFinished.bind(this), 15000); 
         if (this.diamantes.countActive(true) === 0) {
             this.createNewBatchOfDiamantes(player);
         }
-        if (this.rubis % 12 === 0) { // A cada 12 diamantes coletados
+        if (this.rubis % 12 === 0) { 
             this.iceCount += 1;
             this.iceText.setText(this.iceCount);
         }
@@ -270,13 +267,12 @@ export default class Game extends Phaser.Scene {
             child.setBounceY(0);
             child.setCollideWorldBounds(true);
             child.body.allowGravity = false;
-            child.anims.play('rotate'); // Adiciona a animação de rotação
+            child.anims.play('rotate'); 
         });
 
         this.physics.add.collider(this.diamantes, this.platforms);
         this.physics.add.overlap(this.player, this.diamantes, this.collectDiamante, null, this);
 
-        // Cria um novo inimigo sem remover os existentes
         this.createEnemy();
     }
 
