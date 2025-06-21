@@ -6,6 +6,7 @@ export default class Preloader extends Phaser.Scene {
         super({ key: constants.scenes.preloader });
     }
 
+    // Carrega todos os assets
     preload() {
         this.load.image("menuBackground", "assets/menubackground.png");
         this.load.image("pauseMenuBackground", "assets/pauseMenuBackground.png");
@@ -35,8 +36,9 @@ export default class Preloader extends Phaser.Scene {
         this.loadFont("PressStart2P", "assets/fonts/PressStart2P-Regular.ttf");
     }
 
+    // Cria todas as animações globais e arranca o menu principal.
     create() {
-        // create animations for dude
+        // animações do jogador
         this.anims.create({
             key: "left",
             frames: this.anims.generateFrameNumbers("dude", {
@@ -63,7 +65,7 @@ export default class Preloader extends Phaser.Scene {
             repeat: -1,
         });
 
-        // create animation for Diamante
+        // animação do diamante
         this.anims.create({
             key: "rotate",
             frames: this.anims.generateFrameNumbers("Diamante", {
@@ -74,7 +76,7 @@ export default class Preloader extends Phaser.Scene {
             repeat: -1,
         });
 
-        // create animations for enemy
+        // animações do inimigo
         this.anims.create({
             key: "enemyLeft",
             frames: this.anims.generateFrameNumbers("enemy", {
@@ -101,7 +103,7 @@ export default class Preloader extends Phaser.Scene {
             repeat: -1,
         });
 
-        // start main menu scene
+        // avança para o Main Menu
         this.scene.start(constants.scenes.mainMenu); 
     }
 

@@ -9,6 +9,7 @@ import MainMenu from "./src/scenes/MainMenu";
 import PauseMenu from "./src/scenes/PauseMenu"; 
 import Options from "./src/scenes/Options"; 
 
+// Configuração global do Phaser
 const config = {
     type: Phaser.AUTO,
     width: 1000, 
@@ -23,7 +24,15 @@ const config = {
     plugins: {
         global: [NineSlicePlugin.DefaultCfg],
     },
-    scene: [Preloader, MainMenu, Game, UIScene, GameOver, PauseMenu , Options], 
+    scene: [
+    Preloader,   // carrega assets e cria animações
+    MainMenu,    // menu principal
+    Game,        // cena de jogo
+    UIScene,     // camada UI 
+    GameOver,    // ecrã de derrota
+    PauseMenu,   // menu de pausa
+    Options      // definições (mute/unmute)
+  ], 
 };
 
 export default new Phaser.Game(config);

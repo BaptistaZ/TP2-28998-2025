@@ -15,8 +15,6 @@ export default class Options extends Phaser.Scene {
         const unmuteButtonZone = this.add.zone(width / 2, height / 2 + 140, 300, 90).setOrigin(0.5).setInteractive();
         const menuButtonZone = this.add.zone(width / 2, height / 2 + 290, 300, 90).setOrigin(0.5).setInteractive();
 
-     
-
         muteButtonZone.on('pointerdown', () => {
             this.sound.mute = true;
         });

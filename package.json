@@ -12,5 +12,8 @@
   "dependencies": {
     "phaser": "^3.88.2",
     "phaser3-nineslice": "^0.5.0"
+  },
+  "devDependencies": {
+    "vite": "^6.3.5"
   }
 }

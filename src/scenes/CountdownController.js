@@ -24,6 +24,8 @@ export default class CountdownController {
    * @param {() => void} callback
    * @param {number} duration
    */
+
+  // Inicia o temporizador com a duração indicada
   start(callback, duration = 45000) {
       this.stop();
       this.duration = duration;
@@ -51,7 +53,8 @@ export default class CountdownController {
       }
   }
 
-  update(bonus = 0) {
+  // Atualiza o texto do cronómetro a cada frame
+  update() {
       if (!this.timerEvent || this.duration <= 0) {
           return;
       }

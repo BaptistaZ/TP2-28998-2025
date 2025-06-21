@@ -18,13 +18,14 @@ export default class Game extends Phaser.Scene {
     freezeCooldown = 3000; 
     freezeDuration = 3000; 
 
+    // Constrói a cena principal
     constructor() {
         super({ key: constants.scenes.game });
         this.rubis = 0; 
         this.gameOver = false;
     }
 
-    init(data) {
+    init() {
         this.rubis = 0;
         this.iceCount = 0; 
         this.gameOver = false;
@@ -34,6 +35,7 @@ export default class Game extends Phaser.Scene {
 
     preload() {}
 
+    // Configura todos os objectos de jogo, UI, colisões e inputs do teclado.
     create() {
         this.add.image(400, 300, "landscape");
         this.createPlatform();
@@ -167,6 +169,7 @@ export default class Game extends Phaser.Scene {
         });
     }
 
+    // Callback quando o cronómetro chega a zero → pausa e vai para GameOver.
     handleCountdownFinished() {
         this.physics.pause();
         this.displayGameOverText("Time up!");
@@ -174,6 +177,7 @@ export default class Game extends Phaser.Scene {
         this.scene.start(constants.scenes.gameOver);
     }
 
+    // Ciclo principal – atualiza jogador, cronómetro e inteligência dos inimigos.
     update() {
         if (this.gameOver) {
             return;
@@ -249,6 +253,7 @@ export default class Game extends Phaser.Scene {
         this.rubisText.setText("Rubis: " + this.rubis);
     }
 
+    // Recria lote de diamantes + spawna novo inimigo quando esgotados
     createNewBatchOfDiamantes(player) {
         this.diamantes.clear(true, true);
 
@@ -276,6 +281,7 @@ export default class Game extends Phaser.Scene {
         this.createEnemy();
     }
 
+    // Verifica se (x,y) colide com alguma plataforma — evita spawn sobreposto.
     checkOverlapWithPlatforms(x, y) {
         let overlap = false;
         this.platforms.getChildren().forEach(platform => {
@@ -289,6 +295,7 @@ export default class Game extends Phaser.Scene {
         return overlap;
     }
 
+    // Ativa o power de gelo: congela inimigos durante 3 segundos
     useIcePower() {
         if (this.iceCount > 0 && !this.freezeActive) {
             this.iceCount -= 1;
@@ -312,6 +319,7 @@ export default class Game extends Phaser.Scene {
         }
     }
 
+    // Lida com colisão jogador–inimigo (destrói inimigo se congelado)
     handlePlayerEnemyCollide(player, enemy) {
         if (this.freezeActive) {
             enemy.destroy();
